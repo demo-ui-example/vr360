@@ -204,7 +204,7 @@
 			<cube url="panos/MBH_360_NthyI_THtgkT_03.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1600" />
 		</image>
 
-		<!-- <hotspot name="hs_video"
+		<hotspot name="hs_video"
          url="%VIEWER%/plugins/videoplayer.js"
          videourl="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
          distorted="true"
@@ -221,22 +221,7 @@
 
 			<point ath="-115.92276551643232" atv="7.135811687011392" />
 
-		</hotspot> -->
-
-		<hotspot name="hs_video"
-         url="%VIEWER%/plugins/videoplayer.js"
-         videourl="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-         distorted="true"
-         ath="-116.600"
-         atv="10.459"
-         rx="11.6"
-         ry="0.9"
-         rz="0.0"
-         scale="0.423"
-         alpha="1.0"
-         loop="true"
-         pausedonstart="false"
-         renderer="webgl"/>
+		</hotspot>
 
 	</scene>
 
