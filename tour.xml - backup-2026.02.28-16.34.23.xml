@@ -202,27 +202,25 @@
 			<cube url="panos/MBH_360_NthyI_THtgkT_03.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1600" />
 		</image>
 
-		<hotspot name="tv_video"
+		<hotspot name="video"
          url="%VIEWER%/plugins/videoplayer.js"
          videourl="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+         posterurl=""
+         ath="0.0" atv="0.0"
          distorted="true"
+         scale="1.0" 
+         rx="-120" 
+         ry="10" 
+         rz="0.0" 
          pausedonstart="false"
-         loop="true"
-         volume="1.0">
-
-			<!-- Top Left -->
-			<point ath="-144.962" atv="-10.131" />
-
-			<!-- Top Right -->
-			<point ath="-87.601" atv="-9.452" />
-
-			<!-- Bottom Right -->
-			<point ath="-87.792" atv="19.26" />
-
-			<!-- Bottom Left -->
-			<point ath="-145.121" atv="19.876" />
-
-		</hotspot>
+         loop="false"
+         volume="1.0"
+         onvideoready=""
+         onvideoplay=""
+         onvideopaused=""
+         onvideocomplete=""
+         onerror=""
+         />
 
 	</scene>
 
