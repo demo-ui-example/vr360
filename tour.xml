@@ -1,11 +1,80 @@
-﻿<krpano version="1.23" title="Virtual Tour">
+﻿ <krpano version="1.23" title="Virtual Tour" onstart="wait(blend); action(intro)">
 
 	<include url="skin/vtourskin.xml" />
 	<!-- <include url="plugins/videospot_editor.xml" /> -->
 
+	<!-- include the menu -->
+	<include url="plugins/sidemenu.xml" />
+
+	<!-- define menu item -->
+	<group name="level_0">
+		<group name="object_1"  value="1. GROUP"             link="switch_menu(1);" />
+		<group name="object_2"  value="2. GROUP"             link="switch_menu(2);" />
+		<group name="object_3"  value="3. GROUP"             link="switch_menu(3);" />
+	</group>
+
+	<group name="level_1">
+		<group name="object_1"  value="GROUP 1 - element 1"  link="loadscene(scene_mbh_360_nthyi_thtgkt_01,null,MERGE,BLEND(0.5))" />
+		<group name="object_2"  value="GROUP 1 - element 2"  link="loadscene(scene_mbh_360_nthyi_thtgkt_02,null,MERGE,BLEND(0.5))" />
+		<group name="object_3"  value="GROUP 1 - element 3"  link="loadscene(scene_mbh_360_nthyi_thtgkt_03,null,MERGE,BLEND(0.5))" />
+	</group>
+
+	<group name="level_2">
+		<group name="object_1"  value="GROUP 2 - element 1"  link="loadscene(scene_mbh_360_nthyi_thtgkt_04,null,MERGE,BLEND(0.5))" />
+		<group name="object_2"  value="GROUP 2 - element 2"  link="loadscene(scene_mbh_360_nthyi_thtgkt_01,null,MERGE,BLEND(0.5))" />
+		<group name="object_3"  value="GROUP 2 - element 3"  link="loadscene(scene_mbh_360_nthyi_thtgkt_03,null,MERGE,BLEND(0.5))" />
+		<group name="object_4"  value="GROUP 2 - element 4"  link="loadscene(scene_mbh_360_nthyi_thtgkt_04,null,MERGE,BLEND(0.5))" />
+		<group name="object_5"  value="GROUP 2 - element 5"  link="loadscene(scene_mbh_360_nthyi_thtgkt_05,null,MERGE,BLEND(0.5))" />
+	</group>
+
+	<group name="level_3">
+		<group name="object_1"  value="GROUP 3 - element 1"  link="loadscene(scene_mbh_360_nthyi_thtgkt_01,null,MERGE,BLEND(0.5))" />
+		<group name="object_2"  value="GROUP 3 - element 2"  link="loadscene(scene_mbh_360_nthyi_thtgkt_02,null,MERGE,BLEND(0.5))" />
+		<group name="object_3"  value="GROUP 3 - element 3"  link="loadscene(scene_mbh_360_nthyi_thtgkt_03,null,MERGE,BLEND(0.5))" />
+		<group name="object_4"  value="GROUP 3 - element 4"  link="loadscene(scene_mbh_360_nthyi_thtgkt_04,null,MERGE,BLEND(0.5))" />
+		<group name="object_5"  value="GROUP 3 - element 5"  link="loadscene(scene_mbh_360_nthyi_thtgkt_05,null,MERGE,BLEND(0.5))" />
+		<group name="object_6"  value="GROUP 3 - element 6"  link="loadscene(scene_mbh_360_nthyi_thtgkt_06,null,MERGE,BLEND(0.5))" />
+	</group>
+
 	<events onclick="trace('ath=',view.hlookat,' atv=',view.vlookat);" />
 
 	<layer name="logo" url="skin/logo.svg" align="lefttop" x="20" y="10" keep="true" />
+
+	<view hlookat ="-177.807361"
+	vlookat ="90.000000"
+	camroll ="0.000000"
+	fov ="150.000000"
+	fovmin ="50.550680"
+	fovmax ="150.000000"
+	maxpixelzoom ="1.000000"
+	limitfov ="true"
+	fisheye ="1.00"
+	fisheyefovlink="0.50"
+	stereographic ="true"
+	architectural ="0.0"
+	architecturalonlymiddle="false"
+	limitview ="auto"
+	hlookatmin ="NaN"
+	hlookatmax ="NaN"
+	vlookatmin ="NaN"
+	vlookatmax ="NaN"
+	/>
+
+	<action name="intro">
+	tween(view.hlookat, 0, 2.5, easeInOutQuad );
+	wait(3);
+	tween(view.vlookat, -20, 2.5, easeInOutQuad );
+	tween(view.fov, 80, 2.5, easeInOutQuad );
+	tween(view.fisheyefovlink, .3, 2.5, easeInOutQuad );
+	tween(view.fisheye, 0.33, 2.5, easeInOutQuad);
+	tween(view.architectural, .35, 2.5, easeInOutQuad);
+	wait(5);
+	set(display.flash10,on);
+	tween(display.details,32);
+	set(display.stillquality,HIGH);
+	set(display.stillquality10,HIGH);
+	tween(view.fovmax,120);
+	</action>
 
 	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
 	<skin_settings maps="false"
@@ -92,7 +161,7 @@
 		"
 	/>
 
-	<scene  onstart="updateradar(floorplan_hotspot1, 0)" name="scene_mbh_360_nthyi_thtgkt_01" title="MBH_360 NỘI THẤT_01" thumburl="panos/MBH_360_NthyI_THtgkT_01.tiles/thumb.jpg">
+	<scene  onstart="updateradar(floorplan_hotspot1, 0); initiate_menu();" name="scene_mbh_360_nthyi_thtgkt_01" title="MBH_360 NỘI THẤT_01" thumburl="panos/MBH_360_NthyI_THtgkT_01.tiles/thumb.jpg">
 
 		<control bouncinglimits="calc:image.cube ? true : false" />
 
