@@ -1,10 +1,94 @@
-﻿ <krpano version="1.23" title="Virtual Tour" onstart="wait(blend); action(intro)">
+﻿ <krpano version="1.23" title="Virtual Tour" onstart="wait(blend);">
 
 	<include url="skin/vtourskin.xml" />
 	<!-- <include url="plugins/videospot_editor.xml" /> -->
 
 	<!-- include the menu -->
 	<include url="plugins/sidemenu.xml" />
+
+	<layer name="intro_icon"
+       url="skin/icon-intro-info.svg"
+       align="rightbottom"
+       x="20"
+       y="20"
+       scale="1"
+       visible="false"
+       zorder="9999"
+       keep="true"
+       onclick="intro_expand();"
+	   width="40"
+	   height="40"
+/>
+
+	<layer name="intro_container"
+       type="container"
+       align="center"
+       width="100%"
+       height="100%"
+       bgcolor="0x000000"
+       bgalpha="0.8"
+       capture="true"
+       zorder="9999"
+	   keep="true"
+	   visible="true"
+	   scale="1"
+	>
+
+		<!-- INTRO BANNER -->
+		<layer name="intro_banner"
+			parent="intro_container"
+			url="skin/intro.png"
+			align="center"
+			scale="0.6"
+		/>
+
+		<!-- INTRO BUTTON -->
+		<layer name="intro_btn"
+			parent="intro_container"
+			type="text"
+			html="Got it"
+			css="padding:14px 28px;background:#ffffff;color:#000;border-radius:8px;cursor:pointer;font-weight:bold;"
+			align="center"
+			y="140"
+			onclick="intro_minimize();"
+			
+		/>
+	</layer>
+
+	<action name="intro_minimize">
+
+    tween(layer[intro_container].scale, 0.18, 0.5, easeInOutQuad);
+    tween(layer[intro_container].x, 600, 0.5, easeInOutQuad);
+    tween(layer[intro_container].y, 300, 0.5, easeInOutQuad);
+    tween(layer[intro_container].alpha, 0.0, 0.5);
+
+    delayedcall(0.5,
+        set(layer[intro_container].visible,false);
+
+        set(layer[intro_icon].visible,true);
+        set(layer[intro_icon].alpha,0);
+        tween(layer[intro_icon].alpha,1,0.4);
+    );
+
+</action>
+
+	<action name="intro_expand">
+
+    set(layer[intro_container].visible,true);
+    set(layer[intro_container].scale,0.18);
+    set(layer[intro_container].x,600);
+    set(layer[intro_container].y,300);
+    set(layer[intro_container].alpha,0);
+
+    tween(layer[intro_icon].alpha,0,0.3);
+    delayedcall(0.3,set(layer[intro_icon].visible,false););
+
+    tween(layer[intro_container].scale,1,0.5,easeInOutQuad);
+    tween(layer[intro_container].x,0,0.5,easeInOutQuad);
+    tween(layer[intro_container].y,0,0.5,easeInOutQuad);
+    tween(layer[intro_container].alpha,1,0.5);
+
+</action>
 
 	<!-- define menu item -->
 	<group name="level_0">
@@ -60,21 +144,27 @@
 	vlookatmax ="NaN"
 	/>
 
-	<action name="intro">
-	tween(view.hlookat, 0, 2.5, easeInOutQuad );
-	wait(3);
-	tween(view.vlookat, -20, 2.5, easeInOutQuad );
-	tween(view.fov, 80, 2.5, easeInOutQuad );
-	tween(view.fisheyefovlink, .3, 2.5, easeInOutQuad );
-	tween(view.fisheye, 0.33, 2.5, easeInOutQuad);
-	tween(view.architectural, .35, 2.5, easeInOutQuad);
-	wait(5);
-	set(display.flash10,on);
-	tween(display.details,32);
-	set(display.stillquality,HIGH);
-	set(display.stillquality10,HIGH);
-	tween(view.fovmax,120);
-	</action>
+	<!-- <action name="intro">
+    tween(view.hlookat, 0, 2.5, easeInOutQuad);
+    tween(view.vlookat, -20, 2.5, easeInOutQuad);
+    tween(view.fov, 80, 2.5, easeInOutQuad);
+    tween(view.fisheyefovlink, 0.3, 2.5, easeInOutQuad);
+    tween(view.fisheye, 0.33, 2.5, easeInOutQuad);
+    tween(view.architectural, 0.35, 2.5, easeInOutQuad);
+
+    wait(3);
+
+    set(display.flash10,on);
+    tween(display.details,32);
+    set(display.stillquality,HIGH);
+    set(display.stillquality10,HIGH);
+    tween(view.fovmax,120);
+
+    delayedcall(0.5,
+        set(layer[intro_container].visible,true);
+        tween(layer[intro_container].alpha,1,0.6,easeOutQuad);
+    );
+	</action> -->
 
 	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
 	<skin_settings maps="false"
